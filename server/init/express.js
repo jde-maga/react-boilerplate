@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   express.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:17:07 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/09/01 16:13:32 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/11/08 01:14:28 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cors = require('cors');
+const morgan = require('morgan');
 
 const logger = require('./logger.js');
 
@@ -40,6 +42,8 @@ app.set('showStackError', true);
 app.set('root', '/');
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
+app.use(cors());
+app.use(morgan('dev'));
 app.use('/public', express.static(path.join(__dirname, '../../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
